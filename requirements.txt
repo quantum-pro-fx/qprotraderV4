@@ -8,3 +8,4 @@ pandas-ta==0.3.14b0
 requests==2.31.0  # API calls
 gymnasium==0.29.1
 stable-baselines3==2.2.1
+scikit-learn===1.6.1
