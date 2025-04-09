@@ -18,3 +18,14 @@
 - Root files:
   - `requirements.txt`: Python dependencies
   - `README.md`: Project documentation
+
+
+# First install the system dependencies
+# On Mac:
+brew install ta-lib
+
+# On Linux (Debian/Ubuntu):
+sudo apt-get install libta-lib-dev
+
+# Then install the Python wrapper
+pip install TA-Lib
