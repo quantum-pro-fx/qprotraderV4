@@ -1,6 +1,7 @@
 from core.data.fetcher import DataFetcher
-from core.env.multi_symbol_env import MultiSymbolTradingEnv
-from core.agents.ppo_agent import PPOAgent
+#from core.env.multi_symbol_env import MultiSymbolTradingEnv
+from core.env.trading_env import InstitutionalTradingEnv
+from core.agents.ppo_agent import InstitutionalPPO
 from core.agents.ensemble import EnsembleAgent
 from core.agents.meta_learner import MetaLearner
 from core.execution.oanda_executor import OandaExecutor
@@ -11,6 +12,7 @@ from typing import Dict
 import numpy as np
 from pathlib import Path
 from datetime import datetime
+from stable_baselines3.common.vec_env import DummyVecEnv, VecCheckNan
 
 class TradingSystem:
     def __init__(self, mode="train"):
@@ -39,16 +41,21 @@ class TradingSystem:
         """Train the trading agent"""
         # 1. Fetch and prepare data
         symbol_data = self.data_fetcher.fetch_multi_symbol_data()
+
+        # Create environment
+        env = InstitutionalTradingEnv(symbol_data)
+        env = DummyVecEnv([lambda: env])
+        env = VecCheckNan(env, raise_exception=True, warn_once=False)
         
         # 2. Initialize environment
-        env = MultiSymbolTradingEnv(symbol_data)
+        #env = MultiSymbolTradingEnv(symbol_data)
         
         # 3. Train individual models
         self.logger.log_metric("training_start", 1)
-        model1 = PPOAgent(env)
+        model1 = InstitutionalPPO(env)
         model1.learn(total_timesteps=100000)
         
-        model2 = PPOAgent(env, learning_rate=1e-3)
+        model2 = InstitutionalPPO(env, learning_rate=1e-3)
         model2.learn(total_timesteps=100000)
         
         # 4. Create ensemble
@@ -78,7 +85,7 @@ class TradingSystem:
                     symbol_data = self.data_fetcher.fetch_multi_symbol_data(count=100)  # Last 100 periods
                     
                     # 2. Create environment with latest data
-                    env = MultiSymbolTradingEnv(symbol_data)
+                    env = InstitutionalTradingEnv(symbol_data)
                     
                     # 3. Get current observation
                     obs = env._get_obs()  # Get latest state

@@ -1,583 +1,129 @@
-2025-04-06 11:16:16,717 | INFO | TradingLogger initialized
-2025-04-06 11:16:16,717 | ERROR | ERROR in system_run: [Errno 2] No such file or directory: 'models/agent.pkl'
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._live_trading()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 68, in _live_trading
-    self.agent = self._load_agent()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 115, in _load_agent
-    with open(path, 'rb') as f:
-FileNotFoundError: [Errno 2] No such file or directory: 'models/agent.pkl'
-2025-04-06 12:01:22,782 | INFO | TradingLogger initialized
-2025-04-06 12:01:24,338 | INFO | METRIC training_start=1
-2025-04-06 12:01:25,122 | ERROR | ERROR in system_run: index 0 is out of bounds for axis 0 with size 0
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 37, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 98, in _get_obs
-    features = self.feature_engineer.transform(
-IndexError: index 0 is out of bounds for axis 0 with size 0
-2025-04-06 12:01:56,373 | INFO | TradingLogger initialized
-2025-04-06 12:01:56,373 | INFO | SYSTEM EVENT: No agent loaded - attempting to load from disk
-2025-04-06 12:01:56,374 | ERROR | ERROR in model_loading: No trained model at models/agent_latest.pkl
-NoneType: None
-2025-04-06 12:01:56,374 | INFO | SYSTEM EVENT: Starting training since no model exists
-2025-04-06 12:01:57,558 | INFO | METRIC training_start=1
-2025-04-06 12:01:58,232 | ERROR | ERROR in model_loading: index 0 is out of bounds for axis 0 with size 0
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 145, in _load_agent
-    self._train()  # Automatically train if no model exists
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 37, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 98, in _get_obs
-    features = self.feature_engineer.transform(
-IndexError: index 0 is out of bounds for axis 0 with size 0
-2025-04-06 12:01:58,246 | ERROR | ERROR in live_trading_startup: Failed to load agent. Please train first.
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 145, in _load_agent
-    self._train()  # Automatically train if no model exists
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 37, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 98, in _get_obs
-    features = self.feature_engineer.transform(
-IndexError: index 0 is out of bounds for axis 0 with size 0
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 73, in _live_trading
-    self.agent = self._load_agent()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 155, in _load_agent
-    raise RuntimeError("Failed to load agent. Please train first.") from e
-RuntimeError: Failed to load agent. Please train first.
-2025-04-06 12:01:58,246 | INFO | SYSTEM EVENT: Switching to training mode
-2025-04-06 12:01:59,277 | INFO | METRIC training_start=1
-2025-04-06 12:01:59,284 | ERROR | ERROR in system_run: index 0 is out of bounds for axis 0 with size 0
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 145, in _load_agent
-    self._train()  # Automatically train if no model exists
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 37, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 98, in _get_obs
-    features = self.feature_engineer.transform(
-IndexError: index 0 is out of bounds for axis 0 with size 0
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 73, in _live_trading
-    self.agent = self._load_agent()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 155, in _load_agent
-    raise RuntimeError("Failed to load agent. Please train first.") from e
-RuntimeError: Failed to load agent. Please train first.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 37, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 98, in _get_obs
-    features = self.feature_engineer.transform(
-IndexError: index 0 is out of bounds for axis 0 with size 0
-2025-04-06 12:01:59,285 | ERROR | ERROR in system_run: index 0 is out of bounds for axis 0 with size 0
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 145, in _load_agent
-    self._train()  # Automatically train if no model exists
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 37, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 98, in _get_obs
-    features = self.feature_engineer.transform(
-IndexError: index 0 is out of bounds for axis 0 with size 0
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 73, in _live_trading
-    self.agent = self._load_agent()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 155, in _load_agent
-    raise RuntimeError("Failed to load agent. Please train first.") from e
-RuntimeError: Failed to load agent. Please train first.
-
-During handling of the above exception, another exception occurred:
-
+2025-04-09 01:12:16,063 | INFO | TradingLogger initialized
+2025-04-09 01:12:17,722 | INFO | METRIC training_start=1
+2025-04-09 01:12:17,722 | ERROR | ERROR in system_run: Observation space must contain 'market' and 'portfolio' keys
 Traceback (most recent call last):
   File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
-    self._live_trading()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 103, in _live_trading
-    self.run()  # Fall back to training
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
     self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 37, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 98, in _get_obs
-    features = self.feature_engineer.transform(
-IndexError: index 0 is out of bounds for axis 0 with size 0
-2025-04-06 12:02:34,802 | INFO | TradingLogger initialized
-2025-04-06 12:02:36,221 | INFO | METRIC training_start=1
-2025-04-06 12:02:36,854 | ERROR | ERROR in system_run: index 0 is out of bounds for axis 0 with size 0
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 110, in __init__
+    raise ValueError("Observation space must contain 'market' and 'portfolio' keys")
+ValueError: Observation space must contain 'market' and 'portfolio' keys
+2025-04-09 01:13:51,199 | INFO | TradingLogger initialized
+2025-04-09 01:13:51,240 | INFO | METRIC training_start=1
+2025-04-09 01:13:51,241 | ERROR | ERROR in system_run: Observation space must contain 'market' and 'portfolio' keys
 Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
     self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 37, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 98, in _get_obs
-    features = self.feature_engineer.transform(
-IndexError: index 0 is out of bounds for axis 0 with size 0
-2025-04-06 12:07:35,421 | INFO | TradingLogger initialized
-2025-04-06 12:07:36,938 | ERROR | ERROR in system_run: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 112, in __init__
+    raise ValueError("Observation space must contain 'market' and 'portfolio' keys")
+ValueError: Observation space must contain 'market' and 'portfolio' keys
+2025-04-09 01:14:44,007 | INFO | TradingLogger initialized
+2025-04-09 01:14:44,042 | INFO | METRIC training_start=1
+2025-04-09 01:14:44,043 | ERROR | ERROR in system_run: Observation space must contain 'market' and 'portfolio' keys
 Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 120, in transform
-    result = self._calculate_features(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 78, in _calculate_features
-    close_series, df = self._validate_input(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 52, in _validate_input
-    raise ValueError(
-ValueError: Insufficient data (1 rows). Minimum 50 required
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
     self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 44, in _train
-    env = MultiSymbolTradingEnv(symbol_data)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 19, in __init__
-    shape=(len(self.symbols), self._get_feature_dim())
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 92, in _get_feature_dim
-    return len(self.feature_engineer.transform(dummy_df).columns)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 137, in transform
-    raise ValueError(f"Feature transformation failed: {str(e)}") from e
-ValueError: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-2025-04-06 12:08:24,102 | INFO | TradingLogger initialized
-2025-04-06 12:08:25,612 | ERROR | ERROR in system_run: Feature transformation failed: "['macd_line', 'macd_signal'] not in index"
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 112, in __init__
+    raise ValueError("Observation space must contain 'market' and 'portfolio' keys")
+ValueError: Observation space must contain 'market' and 'portfolio' keys
+2025-04-09 01:15:13,935 | INFO | TradingLogger initialized
+2025-04-09 01:15:13,969 | INFO | METRIC training_start=1
+2025-04-09 01:15:13,970 | ERROR | ERROR in system_run: Observation space must contain 'market' and 'portfolio' keys
 Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 127, in transform
-    result[trend_features] = result[trend_features].ffill()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/pandas/core/frame.py", line 3899, in __getitem__
-    indexer = self.columns._get_indexer_strict(key, "columns")[1]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 6115, in _get_indexer_strict
-    self._raise_if_missing(keyarr, indexer, axis_name)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 6179, in _raise_if_missing
-    raise KeyError(f"{not_found} not in index")
-KeyError: "['macd_line', 'macd_signal'] not in index"
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
     self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 44, in _train
-    env = MultiSymbolTradingEnv(symbol_data)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 19, in __init__
-    shape=(len(self.symbols), self._get_feature_dim())
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 92, in _get_feature_dim
-    return len(self.feature_engineer.transform(dummy_df).columns)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 137, in transform
-    raise ValueError(f"Feature transformation failed: {str(e)}") from e
-ValueError: Feature transformation failed: "['macd_line', 'macd_signal'] not in index"
-2025-04-06 12:08:59,485 | INFO | TradingLogger initialized
-2025-04-06 12:09:01,061 | ERROR | ERROR in system_run: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 112, in __init__
+    raise ValueError("Observation space must contain 'market' and 'portfolio' keys")
+ValueError: Observation space must contain 'market' and 'portfolio' keys
+2025-04-09 01:15:43,266 | INFO | TradingLogger initialized
+2025-04-09 01:15:43,303 | INFO | METRIC training_start=1
+2025-04-09 01:15:43,304 | ERROR | ERROR in system_run: Observation space must contain 'market' and 'portfolio' keys
 Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 122, in transform
-    result = self._calculate_features(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 80, in _calculate_features
-    close_series, df = self._validate_input(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 54, in _validate_input
-    raise ValueError(
-ValueError: Insufficient data (1 rows). Minimum 50 required
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
     self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 44, in _train
-    env = MultiSymbolTradingEnv(symbol_data)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 19, in __init__
-    shape=(len(self.symbols), self._get_feature_dim())
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 92, in _get_feature_dim
-    return len(self.feature_engineer.transform(dummy_df).columns)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 139, in transform
-    raise ValueError(f"Feature transformation failed: {str(e)}") from e
-ValueError: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-2025-04-06 12:11:04,186 | INFO | TradingLogger initialized
-2025-04-06 12:11:05,718 | ERROR | ERROR in system_run: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 123, in transform
-    result = self._calculate_features(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 81, in _calculate_features
-    close_series, df = self._validate_input(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 54, in _validate_input
-    raise ValueError(
-ValueError: Insufficient data (1 rows). Minimum 50 required
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 44, in _train
-    env = MultiSymbolTradingEnv(symbol_data)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 19, in __init__
-    shape=(len(self.symbols), self._get_feature_dim())
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 92, in _get_feature_dim
-    return len(self.feature_engineer.transform(dummy_df).columns)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 140, in transform
-    raise ValueError(f"Feature transformation failed: {str(e)}") from e
-ValueError: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-2025-04-06 12:34:06,959 | INFO | TradingLogger initialized
-2025-04-06 12:34:08,222 | INFO | TradingLogger initialized
-2025-04-06 12:34:08,246 | INFO | METRIC training_start=1
-2025-04-06 12:34:08,941 | ERROR | ERROR in system_run: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 123, in transform
-    result = self._calculate_features(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 81, in _calculate_features
-    close_series, df = self._validate_input(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 54, in _validate_input
-    raise ValueError(
-ValueError: Insufficient data (1 rows). Minimum 50 required
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 39, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 130, in _get_obs
-    features = self.feature_engineer.transform(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 140, in transform
-    raise ValueError(f"Feature transformation failed: {str(e)}") from e
-ValueError: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-2025-04-06 12:34:56,707 | INFO | TradingLogger initialized
-2025-04-06 12:34:58,242 | INFO | TradingLogger initialized
-2025-04-06 12:34:58,257 | INFO | METRIC training_start=1
-2025-04-06 12:34:58,776 | ERROR | ERROR in system_run: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 120, in transform
-    result = self._calculate_features(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 78, in _calculate_features
-    close_series, df = self._validate_input(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 52, in _validate_input
-    raise ValueError(
-ValueError: Insufficient data (1 rows). Minimum 50 required
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 39, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 130, in _get_obs
-    features = self.feature_engineer.transform(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 137, in transform
-    raise ValueError(f"Feature transformation failed: {str(e)}") from e
-ValueError: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-2025-04-06 12:36:51,740 | INFO | TradingLogger initialized
-2025-04-06 12:36:52,934 | INFO | TradingLogger initialized
-2025-04-06 12:36:52,944 | INFO | METRIC training_start=1
-2025-04-06 12:36:53,462 | ERROR | ERROR in system_run: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 122, in transform
-    result = self._calculate_features(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 80, in _calculate_features
-    close_series, df = self._validate_input(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 54, in _validate_input
-    raise ValueError(
-ValueError: Insufficient data (1 rows). Minimum 50 required
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 39, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 130, in _get_obs
-    features = self.feature_engineer.transform(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 139, in transform
-    raise ValueError(f"Feature transformation failed: {str(e)}") from e
-ValueError: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-2025-04-06 12:39:12,129 | INFO | TradingLogger initialized
-2025-04-06 12:39:12,890 | INFO | TradingLogger initialized
-2025-04-06 12:39:12,903 | INFO | METRIC training_start=1
-2025-04-06 12:39:13,429 | ERROR | ERROR in system_run: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 122, in transform
-    result = self._calculate_features(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 80, in _calculate_features
-    close_series, df = self._validate_input(df)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 54, in _validate_input
-    raise ValueError(
-ValueError: Insufficient data (1 rows). Minimum 50 required
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 51, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 77, in reset
-    obs, self.reset_infos[env_idx] = self.envs[env_idx].reset(seed=self._seeds[env_idx], **maybe_options)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/monitor.py", line 83, in reset
-    return self.env.reset(**kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 39, in reset
-    return self._get_obs(), {}  # (obs, info)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/multi_symbol_env.py", line 130, in _get_obs
-    features = self.feature_engineer.transform(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/data/processor.py", line 139, in transform
-    raise ValueError(f"Feature transformation failed: {str(e)}") from e
-ValueError: Feature transformation failed: Insufficient data (1 rows). Minimum 50 required
-2025-04-06 12:53:06,861 | INFO | TradingLogger initialized
-2025-04-06 12:53:07,632 | INFO | TradingLogger initialized
-2025-04-06 12:53:07,642 | INFO | METRIC training_start=1
-2025-04-06 12:53:08,341 | ERROR | ERROR in system_run: could not broadcast input array from shape (5,14) into shape (5,21)
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 78, in reset
-    self._save_obs(env_idx, obs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 108, in _save_obs
-    self.buf_obs[key][env_idx] = obs
-ValueError: could not broadcast input array from shape (5,14) into shape (5,21)
-2025-04-06 12:54:32,552 | INFO | TradingLogger initialized
-2025-04-06 12:54:33,265 | INFO | TradingLogger initialized
-2025-04-06 12:54:33,284 | INFO | METRIC training_start=1
-2025-04-06 12:54:33,870 | ERROR | ERROR in system_run: could not broadcast input array from shape (5,14) into shape (5,21)
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 78, in reset
-    self._save_obs(env_idx, obs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 108, in _save_obs
-    self.buf_obs[key][env_idx] = obs
-ValueError: could not broadcast input array from shape (5,14) into shape (5,21)
-2025-04-06 13:03:34,036 | INFO | TradingLogger initialized
-2025-04-06 13:03:34,804 | INFO | TradingLogger initialized
-2025-04-06 13:03:34,827 | INFO | METRIC training_start=1
-2025-04-06 13:03:35,552 | ERROR | ERROR in system_run: could not broadcast input array from shape (5,14) into shape (5,21)
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
-    total_timesteps, callback = self._setup_learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
-    self._last_obs = self.env.reset()  # type: ignore[assignment]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 78, in reset
-    self._save_obs(env_idx, obs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 108, in _save_obs
-    self.buf_obs[key][env_idx] = obs
-ValueError: could not broadcast input array from shape (5,14) into shape (5,21)
-2025-04-06 13:08:28,962 | INFO | TradingLogger initialized
-2025-04-06 13:08:29,813 | INFO | TradingLogger initialized
-2025-04-06 13:08:29,835 | INFO | METRIC training_start=1
-2025-04-06 13:08:29,835 | ERROR | ERROR in system_run: 'MultiSymbolTradingEnv' object has no attribute 'num_envs'
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 48, in _train
-    model1 = PPOAgent(env)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 15, in __init__
-    expected_shape = (env.num_envs, len(env.symbols), env.feature_dim)
-AttributeError: 'MultiSymbolTradingEnv' object has no attribute 'num_envs'
-2025-04-06 13:18:05,235 | INFO | TradingLogger initialized
-2025-04-06 13:18:06,027 | INFO | TradingLogger initialized
-2025-04-06 13:18:06,048 | INFO | METRIC training_start=1
-2025-04-06 13:18:06,776 | ERROR | ERROR in system_run: Expected parameter logits (Tensor of shape (1, 3)) of distribution Categorical(logits: torch.Size([1, 3])) to satisfy the constraint IndependentConstraint(Real(), 1), but found invalid values:
-tensor([[nan, nan, nan]])
-Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 31, in run
-    self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 49, in _train
-    model1.learn(total_timesteps=100000)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
-    return super().learn(
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 277, in learn
-    continue_training = self.collect_rollouts(self.env, callback, self.rollout_buffer, n_rollout_steps=self.n_steps)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 178, in collect_rollouts
-    actions, values, log_probs = self.policy(obs_tensor)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 652, in forward
-    distribution = self._get_action_dist_from_latent(latent_pi)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 698, in _get_action_dist_from_latent
-    return self.action_dist.proba_distribution(action_logits=mean_actions)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/distributions.py", line 342, in proba_distribution
-    self.distribution = [Categorical(logits=split) for split in th.split(action_logits, list(self.action_dims), dim=1)]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/distributions.py", line 342, in <listcomp>
-    self.distribution = [Categorical(logits=split) for split in th.split(action_logits, list(self.action_dims), dim=1)]
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/torch/distributions/categorical.py", line 72, in __init__
-    super().__init__(batch_shape, validate_args=validate_args)
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/torch/distributions/distribution.py", line 71, in __init__
-    raise ValueError(
-ValueError: Expected parameter logits (Tensor of shape (1, 3)) of distribution Categorical(logits: torch.Size([1, 3])) to satisfy the constraint IndependentConstraint(Real(), 1), but found invalid values:
-tensor([[nan, nan, nan]])
-2025-04-06 13:32:08,865 | INFO | TradingLogger initialized
-2025-04-06 13:32:10,035 | INFO | METRIC training_start=1
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 112, in __init__
+    raise ValueError("Observation space must contain 'market' and 'portfolio' keys")
+ValueError: Observation space must contain 'market' and 'portfolio' keys
+2025-04-09 01:16:35,976 | INFO | TradingLogger initialized
+2025-04-09 01:16:36,012 | INFO | METRIC training_start=1
+2025-04-09 01:20:47,305 | INFO | TradingLogger initialized
+2025-04-09 01:20:47,339 | INFO | METRIC training_start=1
