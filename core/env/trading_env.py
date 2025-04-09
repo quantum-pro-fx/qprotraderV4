@@ -285,10 +285,11 @@ class InstitutionalTradingEnv(gym.Env):
         # Turnover penalty
         turnover = sum(
             abs(pos['commission']) for pos in self.positions.values() if pos
-        ) / max(1e-6, portfolio_value)
-        turnover_penalty = -2 * turnover
-        
-        return 0.4*sharpe + 0.3*drawdown_penalty + 0.2*concentration_penalty + 0.1*turnover_penalty
+        ) / portfolio_value
+        turnover_penalty = -2 * turnover  # Small penalty for high turnover
+
+        total_reward = sharpe + drawdown_penalty + concentration_penalty + turnover_penalty
+        return total_reward
 
     def _should_terminate(self, portfolio_value):
         """Professional termination conditions"""

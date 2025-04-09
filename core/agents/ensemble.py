@@ -1,24 +1,34 @@
-from stable_baselines3 import PPO
+# core/agents/ensemble.py
 import numpy as np
 from gymnasium import spaces
+from typing import List
 
 class EnsembleAgent:
-    def __init__(self, models):
-        self.models = models  # List of trained PPO models
+    """Robust ensemble with action space validation"""
     
-    def predict(self, obs, **kwargs):
-        # Collect predictions from all models
+    def __init__(self, models: List):
+        if not models:
+            raise ValueError("Empty model list")
+            
+        # Validate all models have compatible action spaces
+        self.action_space = models[0].action_space
+        for model in models[1:]:
+            if not spaces.are_spaces_equal(model.action_space, self.action_space):
+                raise ValueError("Incompatible action spaces in ensemble")
+                
+        self.models = models
+    
+    def predict(self, obs, deterministic=False):
         predictions = []
         for model in self.models:
-            action, _ = model.predict(obs, **kwargs)
+            action, _ = model.predict(obs, deterministic=deterministic)
             predictions.append(action)
         
-        # Majority voting for discrete actions
-        if isinstance(self.models[0].action_space, spaces.Discrete):
-            return np.array([
-                np.argmax(np.bincount([pred[i] for pred in predictions]))
-                for i in range(len(predictions[0]))
-            ]), None
-        
-        # Mean for continuous actions
-        return np.mean(predictions, axis=0), None
+        if isinstance(self.action_space, spaces.Discrete):
+            # Majority vote with random tie-break
+            votes = np.array(predictions)
+            return np.array([np.random.choice(np.where(votes[:,i] == votes[:,i].max())[0]) 
+                            for i in range(votes.shape[1])]), None
+        else:
+            # Weighted average (could add model confidence weights)
+            return np.mean(predictions, axis=0), None

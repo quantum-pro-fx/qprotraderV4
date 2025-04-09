@@ -10,3 +10,9 @@ requests==2.31.0  # API calls
 gymnasium==0.29.1
 stable-baselines3==2.2.1
 scikit-learn===1.6.1
+# ninja
+# cmake
+onnx==1.17.0
+onnxruntime==1.19.2
+stable-baselines3[extra]
+# onnxruntime-gpu==1.13.1
