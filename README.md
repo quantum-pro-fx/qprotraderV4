@@ -29,3 +29,8 @@ sudo apt-get install libta-lib-dev
 
 # Then install the Python wrapper
 pip install TA-Lib
+
+
+ pip install --upgrade pip setuptools wheel
+
+ python3 -m scripts.train

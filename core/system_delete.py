@@ -12,7 +12,7 @@ from typing import Dict
 import numpy as np
 from pathlib import Path
 from datetime import datetime
-from stable_baselines3.common.vec_env import DummyVecEnv, VecCheckNan
+from stable_baselines3.common.vec_env import DummyVecEnv
 
 class TradingSystem:
     def __init__(self, mode="train"):
@@ -43,14 +43,12 @@ class TradingSystem:
         symbol_data = self.data_fetcher.fetch_multi_symbol_data()
 
         # Create environment
-        env = InstitutionalTradingEnv(symbol_data)
-        env = DummyVecEnv([lambda: env])
-        env = VecCheckNan(env, raise_exception=True, warn_once=False)
+        env = DummyVecEnv([lambda: InstitutionalTradingEnv(symbol_data)])
         
         # 2. Initialize environment
         #env = MultiSymbolTradingEnv(symbol_data)
         
-        # 3. Train individual models
+        # 3. Train base models
         self.logger.log_metric("training_start", 1)
         model1 = InstitutionalPPO(env)
         model1.learn(total_timesteps=100000)
@@ -58,18 +56,25 @@ class TradingSystem:
         model2 = InstitutionalPPO(env, learning_rate=1e-3)
         model2.learn(total_timesteps=100000)
         
-        # 4. Create ensemble
-        ensemble = EnsembleAgent([model1, model2])
-        
-        # 5. Initialize meta-learner
-        self.agent = MetaLearner({
-            0: ensemble,  # Default regime
-            1: model1,    # Regime 1 strategy
-            2: model2     # Regime 2 strategy
-        })
-        
-        # 6. Save trained models
+        # Initialize meta-learner with historical regimes
+        market_states = [obs['market'] for obs in env.envs[0].history]
+        meta_learner = MetaLearner(
+            agents={
+                0: EnsembleAgent([model1, model2]),  # Default
+                1: model1,  # Regime 1
+                2: model2   # Regime 2
+            },
+            n_regimes=3
+        )
+
+         # Prime the regime detector
+        for state in market_states:
+            meta_learner.update_regime(state)
+            
+        self.agent = meta_learner
+        # Save trained models
         self._save_agent()
+
         self.logger.log_metric("training_complete", 1)
 
     def _live_trading(self):
