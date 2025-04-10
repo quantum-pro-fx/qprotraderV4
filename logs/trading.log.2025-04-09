@@ -1,0 +1,265 @@
+2025-04-09 01:12:16,063 | INFO | TradingLogger initialized
+2025-04-09 01:12:17,722 | INFO | METRIC training_start=1
+2025-04-09 01:12:17,722 | ERROR | ERROR in system_run: Observation space must contain 'market' and 'portfolio' keys
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 110, in __init__
+    raise ValueError("Observation space must contain 'market' and 'portfolio' keys")
+ValueError: Observation space must contain 'market' and 'portfolio' keys
+2025-04-09 01:13:51,199 | INFO | TradingLogger initialized
+2025-04-09 01:13:51,240 | INFO | METRIC training_start=1
+2025-04-09 01:13:51,241 | ERROR | ERROR in system_run: Observation space must contain 'market' and 'portfolio' keys
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 112, in __init__
+    raise ValueError("Observation space must contain 'market' and 'portfolio' keys")
+ValueError: Observation space must contain 'market' and 'portfolio' keys
+2025-04-09 01:14:44,007 | INFO | TradingLogger initialized
+2025-04-09 01:14:44,042 | INFO | METRIC training_start=1
+2025-04-09 01:14:44,043 | ERROR | ERROR in system_run: Observation space must contain 'market' and 'portfolio' keys
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 112, in __init__
+    raise ValueError("Observation space must contain 'market' and 'portfolio' keys")
+ValueError: Observation space must contain 'market' and 'portfolio' keys
+2025-04-09 01:15:13,935 | INFO | TradingLogger initialized
+2025-04-09 01:15:13,969 | INFO | METRIC training_start=1
+2025-04-09 01:15:13,970 | ERROR | ERROR in system_run: Observation space must contain 'market' and 'portfolio' keys
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 112, in __init__
+    raise ValueError("Observation space must contain 'market' and 'portfolio' keys")
+ValueError: Observation space must contain 'market' and 'portfolio' keys
+2025-04-09 01:15:43,266 | INFO | TradingLogger initialized
+2025-04-09 01:15:43,303 | INFO | METRIC training_start=1
+2025-04-09 01:15:43,304 | ERROR | ERROR in system_run: Observation space must contain 'market' and 'portfolio' keys
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 112, in __init__
+    raise ValueError("Observation space must contain 'market' and 'portfolio' keys")
+ValueError: Observation space must contain 'market' and 'portfolio' keys
+2025-04-09 01:16:35,976 | INFO | TradingLogger initialized
+2025-04-09 01:16:36,012 | INFO | METRIC training_start=1
+2025-04-09 01:20:47,305 | INFO | TradingLogger initialized
+2025-04-09 01:20:47,339 | INFO | METRIC training_start=1
+2025-04-09 02:43:47,095 | ERROR | ERROR in system_run: Can't pickle local object 'InstitutionalPPO.__init__.<locals>.linear_schedule.<locals>.func'
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 72, in _train
+    self._save_agent()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 143, in _save_agent
+    pickle.dump(self.agent, f)
+AttributeError: Can't pickle local object 'InstitutionalPPO.__init__.<locals>.linear_schedule.<locals>.func'
+2025-04-09 09:37:33,269 | INFO | TradingLogger initialized
+2025-04-09 09:37:35,310 | INFO | METRIC training_start=1
+2025-04-09 09:41:27,266 | INFO | TradingLogger initialized
+2025-04-09 09:41:27,301 | INFO | METRIC training_start=1
+2025-04-09 09:41:27,302 | ERROR | ERROR in system_run: __init__() got an unexpected keyword argument 'market_features_dim'
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 55, in _train
+    model1 = InstitutionalPPO(env)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 59, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 133, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 889, in __init__
+    super().__init__(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 505, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/myenv/lib/python3.9/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+TypeError: __init__() got an unexpected keyword argument 'market_features_dim'
+2025-04-09 09:42:44,341 | INFO | TradingLogger initialized
+2025-04-09 09:42:44,377 | INFO | METRIC training_start=1
+2025-04-09 12:07:02,985 | ERROR | ERROR in system_run: Can't pickle local object 'InstitutionalPPO.__init__.<locals>.linear_schedule.<locals>.func'
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 72, in _train
+    self._save_agent()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 143, in _save_agent
+    pickle.dump(self.agent, f)
+AttributeError: Can't pickle local object 'InstitutionalPPO.__init__.<locals>.linear_schedule.<locals>.func'
+2025-04-09 13:23:00,691 | INFO | TradingLogger initialized
+2025-04-09 13:23:02,955 | INFO | METRIC training_start=1
+2025-04-09 13:23:54,597 | INFO | TradingLogger initialized
+2025-04-09 13:23:54,631 | INFO | METRIC training_start=1
+2025-04-09 14:02:19,383 | INFO | TradingLogger initialized
+2025-04-09 14:02:21,227 | INFO | METRIC training_start=1
+2025-04-09 14:45:23,981 | ERROR | ERROR in system_run: stable_baselines3.ppo.ppo.PPO.__init__() got multiple values for keyword argument 'learning_rate'
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 33, in run
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system.py", line 56, in _train
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 66, in __init__
+    super().__init__(
+TypeError: stable_baselines3.ppo.ppo.PPO.__init__() got multiple values for keyword argument 'learning_rate'
+2025-04-09 15:23:50,257 | INFO | TradingLogger initialized
+2025-04-09 15:23:51,922 | INFO | METRIC training_start=1
+2025-04-09 15:26:52,930 | INFO | TradingLogger initialized
+2025-04-09 15:26:52,965 | INFO | METRIC training_start=1
+2025-04-09 15:27:17,810 | INFO | TradingLogger initialized
+2025-04-09 15:27:17,841 | INFO | METRIC training_start=1
+2025-04-09 15:27:46,551 | INFO | TradingLogger initialized
+2025-04-09 15:27:46,586 | INFO | METRIC training_start=1
+2025-04-09 15:33:39,645 | INFO | TradingLogger initialized
+2025-04-09 15:33:39,680 | INFO | METRIC training_start=1
+2025-04-09 15:33:40,365 | ERROR | ERROR in system_run: You must install tqdm and rich in order to use the progress bar callback. It is included if you install stable-baselines with the extra packages: `pip install stable-baselines3[extra]`
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 35, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 53, in _train
+    model1.learn(total_timesteps=100000)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 126, in learn
+    return super().learn(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/.venv/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 315, in learn
+    return super().learn(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/.venv/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 264, in learn
+    total_timesteps, callback = self._setup_learn(
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/.venv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 434, in _setup_learn
+    callback = self._init_callback(callback, progress_bar)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/.venv/lib/python3.9/site-packages/stable_baselines3/common/base_class.py", line 378, in _init_callback
+    callback = CallbackList([callback, ProgressBarCallback()])
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/.venv/lib/python3.9/site-packages/stable_baselines3/common/callbacks.py", line 690, in __init__
+    raise ImportError(
+ImportError: You must install tqdm and rich in order to use the progress bar callback. It is included if you install stable-baselines with the extra packages: `pip install stable-baselines3[extra]`
+2025-04-09 15:37:26,318 | INFO | TradingLogger initialized
+2025-04-09 15:37:26,354 | INFO | METRIC training_start=1
+2025-04-09 16:21:13,263 | ERROR | ERROR in system_run: stable_baselines3.ppo.ppo.PPO.__init__() got multiple values for keyword argument 'learning_rate'
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 35, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 55, in _train
+    model2 = InstitutionalPPO(env, learning_rate=1e-3)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 96, in __init__
+    super().__init__(
+TypeError: stable_baselines3.ppo.ppo.PPO.__init__() got multiple values for keyword argument 'learning_rate'
+2025-04-09 17:22:39,660 | INFO | TradingLogger initialized
+2025-04-09 17:23:48,764 | INFO | TradingLogger initialized
+2025-04-09 17:29:43,232 | INFO | TradingLogger initialized
+2025-04-09 17:33:11,313 | INFO | TradingLogger initialized
+2025-04-09 20:51:22,754 | INFO | TradingLogger initialized
+2025-04-09 21:00:10,189 | INFO | TradingLogger initialized
+2025-04-09 21:01:19,285 | INFO | TradingLogger initialized
+2025-04-09 21:08:58,582 | INFO | TradingLogger initialized
+2025-04-09 21:11:49,526 | INFO | TradingLogger initialized
+2025-04-09 21:11:49,535 | ERROR | ERROR in system_run: 'InstitutionalTradingEnv' object has no attribute 'feature_enginee'
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 56, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 66, in _train
+    env = DummyVecEnv([lambda: InstitutionalTradingEnv(symbol_data)])
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/.venv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 30, in __init__
+    self.envs = [_patch_env(fn()) for fn in env_fns]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/.venv/lib/python3.9/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 30, in <listcomp>
+    self.envs = [_patch_env(fn()) for fn in env_fns]
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 66, in <lambda>
+    env = DummyVecEnv([lambda: InstitutionalTradingEnv(symbol_data)])
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/env/trading_env.py", line 31, in __init__
+    print(f"Actual features: {self.feature_enginee.get_feature_count()}")
+AttributeError: 'InstitutionalTradingEnv' object has no attribute 'feature_enginee'
+2025-04-09 21:12:25,329 | INFO | TradingLogger initialized
+2025-04-09 21:14:44,341 | INFO | TradingLogger initialized
+2025-04-09 21:22:35,183 | INFO | TradingLogger initialized
+2025-04-09 22:11:55,783 | ERROR | ERROR in system_run: stable_baselines3.ppo.ppo.PPO.__init__() got multiple values for keyword argument 'learning_rate'
+Traceback (most recent call last):
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 56, in run
+    self._train()
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 72, in _train
+    model2 = InstitutionalPPO(env, learning_rate=1e-3)
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ppo_agent.py", line 103, in __init__
+    super().__init__(
+TypeError: stable_baselines3.ppo.ppo.PPO.__init__() got multiple values for keyword argument 'learning_rate'
+2025-04-09 22:36:00,538 | INFO | TradingLogger initialized
+2025-04-09 22:57:09,164 | INFO | TradingLogger initialized

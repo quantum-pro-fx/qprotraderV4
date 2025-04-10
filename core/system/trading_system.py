@@ -69,7 +69,7 @@ class TradingSystem(BaseAlgorithm):
         model1 = InstitutionalPPO(env)
         model1.learn(total_timesteps=100000)
         
-        model2 = InstitutionalPPO(env, learning_rate=1e-3)
+        model2 = InstitutionalPPO(env, learning_rate=1e-4)
         model2.learn(total_timesteps=100000)
         
         # Initialize meta-learner
