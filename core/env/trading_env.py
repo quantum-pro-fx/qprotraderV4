@@ -14,19 +14,20 @@ class InstitutionalTradingEnv(gym.Env):
     
     def __init__(self, symbol_data: Dict[str, pd.DataFrame], 
                  initial_balance: float = 1000.00,
-                 window_size: int = 5,
-                 n_features: int = 25):
+                 window_size: int = 5):
+        
+        self.n_features = InstitutionalFeatureEngineer().get_feature_count()  # Dynamic
         
         self.feature_engineer = InstitutionalFeatureEngineer(
-        min_data_points=100,
-        expected_shape=(window_size, n_features)
+            min_data_points=100,
+            expected_shape=(window_size, self.n_features)
         )
+    
         self.symbol_data = self._preprocess_data(symbol_data)
         self.symbols = sorted(self.symbol_data.keys())
         self.n_symbols = len(self.symbols)
         self.initial_balance = initial_balance
         self.window_size = window_size
-        self.n_features = n_features
         
         # Trading parameters - MOVED BEFORE action_space initialization
         self.max_position_size = 0.2  # 20% per symbol
@@ -261,35 +262,82 @@ class InstitutionalTradingEnv(gym.Env):
             self.returns.append((total - self.portfolio_history[-2]) / self.portfolio_history[-2])
             
         return total
+    
+    def _get_market_return(self) -> float:
+        """Calculates the weighted market return across all symbols"""
+        try:
+            if len(self.symbol_data) == 0 or self.current_step < 1:
+                return 0.0
+            
+            total_return = 0.0
+            total_weight = 0.0
+            
+            for symbol in self.symbols:
+                # Get current and previous close prices
+                current_data = self.symbol_data[symbol].iloc[self.current_step]
+                prev_data = self.symbol_data[symbol].iloc[self.current_step - 1]
+                
+                # Calculate symbol return
+                symbol_return = (current_data['close'] - prev_data['close']) / prev_data['close']
+                
+                # Weight by position size if holding, else equal weight
+                position = self.positions.get(symbol)
+                if position and position['size'] != 0:
+                    weight = abs(position['size'])
+                else:
+                    weight = 1.0 / len(self.symbols)
+                    
+                total_return += symbol_return * weight
+                total_weight += weight
+                
+            return total_return / (total_weight + 1e-6)
+        
+        except Exception as e:
+            self.logger.error(f"Market return calculation failed: {str(e)}")
+            return 0.0
 
-    def _calculate_reward(self, portfolio_value):
-        """Improved reward function with multiple factors"""
-        if len(self.returns) < 2:
+    def _calculate_reward(self, portfolio_value: float) -> float:
+        """
+        Robust reward calculation with complete NaN/inf protection
+        and proper initialization handling
+        """
+        # 1. Basic validation
+        if len(self.portfolio_history) < 2:
             return 0.0
         
-        # Sharpe ratio component
-        sharpe = np.mean(self.returns[-20:]) / (np.std(self.returns[-20:]) + 1e-6) * np.sqrt(252) if len(self.returns) >= 20 else 0
-        
-        # Drawdown penalty
-        max_portfolio = max(self.portfolio_history)
-        current_drawdown = (max_portfolio - portfolio_value) / max_portfolio if max_portfolio > 0 else 0
-        drawdown_penalty = -10 * max(0, current_drawdown - 0.05)  # Penalize >5% drawdown
-        
-        # Position concentration penalty
-        exposure = sum(
-            abs(pos['size'] * self._get_current_price(sym))
-            for sym, pos in self.positions.items() if pos
-        ) / max(1e-6, portfolio_value)
-        concentration_penalty = -5 * max(0, exposure - 0.5)  # Penalize >50% exposure
-        
-        # Turnover penalty
-        turnover = sum(
-            abs(pos['commission']) for pos in self.positions.values() if pos
-        ) / portfolio_value
-        turnover_penalty = -2 * turnover  # Small penalty for high turnover
+        # 2. Directional Component (60%)
+        try:
+            market_return = self._get_market_return()
+            portfolio_return = (portfolio_value - self.portfolio_history[-2]) / (self.portfolio_history[-2] + 1e-6)
+            directional_alignment = np.sign(portfolio_return * market_return) * min(abs(portfolio_return), 0.05)
+        except:
+            directional_alignment = 0.0
 
-        total_reward = sharpe + drawdown_penalty + concentration_penalty + turnover_penalty
-        return total_reward
+        # 3. Risk Component (30%) - Fully protected
+        risk_component = 0.0
+        if len(self.returns) >= 5:  # Minimum 5 periods for meaningful stats
+            valid_returns = np.array(self.returns[-20:])
+            valid_returns = valid_returns[~np.isnan(valid_returns)]
+            
+            if len(valid_returns) > 1:
+                with warnings.catch_warnings():  # Suppress runtime warnings
+                    warnings.simplefilter("ignore")
+                    sharpe = np.mean(valid_returns) / (np.std(valid_returns) + 1e-6) * np.sqrt(252)
+                    risk_component = np.clip(sharpe, -2, 2) / 2
+
+        # 4. Drawdown Component (10%)
+        try:
+            max_portfolio = max(self.portfolio_history)
+            current_dd = (max_portfolio - portfolio_value) / (max_portfolio + 1e-6)
+            drawdown_penalty = -min(current_dd ** 2, 0.25)
+        except:
+            drawdown_penalty = 0.0
+
+        return (
+            0.6 * directional_alignment +
+            0.3 * risk_component +
+            0.1 * drawdown_penalty
+        )
 
     def _should_terminate(self, portfolio_value):
         """Professional termination conditions"""

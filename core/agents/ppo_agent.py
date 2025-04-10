@@ -7,7 +7,7 @@ from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
 from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.preprocessing import preprocess_obs
 from gymnasium import spaces
-from typing import Dict
+from typing import Dict, Optional
 import warnings
 
 class InstitutionalFeatureExtractor(BaseFeaturesExtractor):
@@ -77,10 +77,10 @@ class TrainingMonitorCallback(BaseCallback):
 class InstitutionalPPO(PPO):
     """Enhanced with proper initialization, risk controls, and training visibility"""
     
-    def __init__(self, env, **kwargs):
+    def __init__(self, env, learning_rate: Optional[float] = None, **kwargs):
         # Ensure verbosity is properly set
         verbose = kwargs.pop('verbose', 1)
-        self.max_position_size = 0.2  # Define this in __init__ or pass via kwargs
+        self.max_position_size = kwargs.pop('max_position_size', 0.2)
         
         policy_kwargs = kwargs.pop('policy_kwargs', {})
         policy_kwargs.update({
@@ -92,31 +92,32 @@ class InstitutionalPPO(PPO):
             },
             "net_arch": {
                 "pi": [256, 128],  # Policy network
-                "vf": [512, 256]    # Larger value network
-            }
+                "vf": [512, 256, 128]  # Deeper value network for stability
+            },
+            "activation_fn": torch.nn.ReLU,  # Explicitly use ReLU
+            "ortho_init": True  # Orthogonal initialization for stability
         })
+
+        # Linear learning rate decay
+        lr_schedule = lambda progress: 3e-4 * (1 - progress * 0.9)  # 3e-4 → 3e-5
+        kwargs['learning_rate'] = lr_schedule if learning_rate is None else learning_rate
         
-        # Warn about potential hyperparameter conflicts
-        if 'learning_rate' in kwargs:
-            warnings.warn("Custom learning rate may affect training stability")
-            
         super().__init__(
             policy="MultiInputPolicy",
             env=env,
-            learning_rate=3e-4,
             n_steps=1024,
-            batch_size=128,
-            n_epochs=20,
+            batch_size=256,  # Increased
+            n_epochs=10,    # Reduced
             gamma=0.99,
             gae_lambda=0.90,
-            clip_range=0.15,
-            ent_coef=0.05,
+            clip_range=0.15,  # Adjusted
+            ent_coef=0.02,     # Reduced
             max_grad_norm=0.5,
             policy_kwargs=policy_kwargs,
-            verbose=verbose,  # Ensure verbosity is passed through
+            verbose=verbose,
             **kwargs
         )
-        
+
     def learn(self, total_timesteps, callback=None, **kwargs):
         """Enhanced learn method with better progress tracking"""
         # Create composite callback if none provided
