@@ -8,10 +8,11 @@ from datetime import datetime
 import time
 import json
 
-from stable_baselines3.common.vec_env import DummyVecEnv
+from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
 from stable_baselines3.common.base_class import BaseAlgorithm
 from core.data.fetcher import DataFetcher
 from core.env.trading_env import InstitutionalTradingEnv
+from core.env.enhanced_trading_env import EnhancedTradingEnv
 from core.agents.ppo_agent import InstitutionalPPO
 from core.agents.ensemble import EnsembleAgent
 from core.agents.meta_learner import MetaLearner
@@ -63,7 +64,8 @@ class TradingSystem(BaseAlgorithm):
     def _train(self):
         """Training pipeline."""
         symbol_data = self.data_fetcher.fetch_multi_symbol_data()
-        env = DummyVecEnv([lambda: InstitutionalTradingEnv(symbol_data)])
+        env = DummyVecEnv([lambda: EnhancedTradingEnv(symbol_data)])
+        env = VecNormalize(env, norm_obs=True, norm_reward=True)
         
         # Train base models
         model1 = InstitutionalPPO(env)
@@ -72,19 +74,35 @@ class TradingSystem(BaseAlgorithm):
         model2 = InstitutionalPPO(env, learning_rate=1e-4)
         model2.learn(total_timesteps=100000)
         
-        # Initialize meta-learner
-        self.agent = MetaLearner(
-            agents={
-                0: EnsembleAgent([model1, model2]),
-                1: model1,
-                2: model2
-            },
-            n_regimes=3
-        )
-        
-        # Prime regime detector
-        for obs in env.envs[0].history:
-            self.agent.update_regime(obs['market'])
+        try:
+            # Initialize ensemble with validation
+            ensemble = EnsembleAgent([model1, model2])
+
+            # Initialize meta-learner
+            self.agent = MetaLearner(
+                agents={
+                    0: ensemble,
+                    1: model1,
+                    2: model2
+                },
+                n_regimes=3
+            )
+        except ValueError as e:
+            self.logger.log_error(e, "ensemble_creation")
+            # Fallback to single model if ensemble fails
+            self.agent = model1
+
+        # Prime regime detector - SAFE ACCESS TO HISTORY
+        if hasattr(env.envs[0], 'history'):  # Check if history exists
+            for obs in env.envs[0].history:
+                if 'market' in obs:  # Verify market data exists
+                    self.agent.update_regime(obs['market'])
+        else:
+            # Alternative initialization if no history is available
+            dummy_obs = env.reset()
+            if isinstance(dummy_obs, tuple):  # Handle gymnasium's (obs, info) return
+                dummy_obs = dummy_obs[0]
+            self.agent.update_regime(dummy_obs['market'])
         
         # Save with metadata
         self._save_agent({
@@ -94,7 +112,8 @@ class TradingSystem(BaseAlgorithm):
                 "max_position_size": self.max_position_size,
                 "slippage": self.slippage,
                 "commission": self.commission
-            }
+            },
+            "ensemble_used": isinstance(self.agent, MetaLearner)  # Track if ensemble was used
         })
 
     def _live_trading(self):
@@ -104,8 +123,8 @@ class TradingSystem(BaseAlgorithm):
         while True:
             try:
                 symbol_data = self.data_fetcher.fetch_multi_symbol_data(count=100)
-                env = InstitutionalTradingEnv(symbol_data)
-                obs = env._get_obs()
+                env = EnhancedTradingEnv(symbol_data)
+                obs = env._get_observation()
                 
                 action = self.predict(obs)
                 self._execute_trades(action, symbol_data)

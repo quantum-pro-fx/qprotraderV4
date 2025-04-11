@@ -1,19 +1,10 @@
-2025-04-10 00:33:43,068 | ERROR | ERROR in system_run: module 'gymnasium.spaces' has no attribute 'are_spaces_equal'
+2025-04-11 03:34:18,476 | ERROR | ERROR in system_run: module 'gymnasium.spaces' has no attribute 'are_spaces_equal'
 Traceback (most recent call last):
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 56, in run
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 57, in run
     self._train()
-  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 78, in _train
+  File "/Users/benjaminigbokwe/projects/qprotraderV4/core/system/trading_system.py", line 80, in _train
     0: EnsembleAgent([model1, model2]),
   File "/Users/benjaminigbokwe/projects/qprotraderV4/core/agents/ensemble.py", line 16, in __init__
     if not spaces.are_spaces_equal(model.action_space, self.action_space):
 AttributeError: module 'gymnasium.spaces' has no attribute 'are_spaces_equal'
-2025-04-10 15:21:16,044 | INFO | TradingLogger initialized
-2025-04-10 15:23:39,858 | INFO | TradingLogger initialized
-2025-04-10 15:24:18,854 | INFO | TradingLogger initialized
-2025-04-10 15:25:07,262 | INFO | TradingLogger initialized
-2025-04-10 15:25:28,036 | INFO | TradingLogger initialized
-2025-04-10 15:26:58,738 | INFO | TradingLogger initialized
-2025-04-10 15:35:26,168 | INFO | TradingLogger initialized
-2025-04-10 15:39:40,936 | INFO | TradingLogger initialized
-2025-04-10 15:49:52,586 | INFO | TradingLogger initialized
-2025-04-10 15:52:10,130 | INFO | TradingLogger initialized
+2025-04-11 10:19:10,927 | INFO | TradingLogger initialized
