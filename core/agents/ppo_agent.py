@@ -98,8 +98,23 @@ class InstitutionalPPO(PPO):
             "ortho_init": True  # Orthogonal initialization for stability
         })
 
+        def lr_schedule(progress_remaining: float) -> float:
+            """
+            Linear decay with minimum learning rate floor
+            Args:
+                progress_remaining: 1.0 at start, 0.0 at end
+            Returns:
+                Current learning rate
+            """
+            initial_lr = 3e-4
+            min_lr = 1e-5  # Minimum learning rate threshold
+            progress = 1 - progress_remaining  # Convert to progress [0,1]
+            
+            # Calculate decayed LR with floor
+            decayed_lr = initial_lr * (1 - progress * 0.9)  # 3e-4 → 3e-5
+            return max(min_lr, decayed_lr)
+
         # Linear learning rate decay
-        lr_schedule = lambda progress: 3e-4 * (1 - progress * 0.9)  # 3e-4 → 3e-5
         kwargs['learning_rate'] = lr_schedule if learning_rate is None else learning_rate
         
         super().__init__(
@@ -110,11 +125,12 @@ class InstitutionalPPO(PPO):
             n_epochs=10,    # Reduced
             gamma=0.99,
             gae_lambda=0.90,
-            clip_range=0.15,  # Adjusted
-            ent_coef=0.02,     # Reduced
-            max_grad_norm=0.5,
+            clip_range=0.5,  # Adjusted
+            ent_coef=0.01,     # Reduced
+            max_grad_norm=0.3,
             policy_kwargs=policy_kwargs,
             verbose=verbose,
+            normalize_advantage=True,
             **kwargs
         )
 
